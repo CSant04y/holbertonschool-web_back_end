@@ -2,11 +2,11 @@
 """
 fixing code bellow
 """
-
 from typing import List, Tuple
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """Returns a list"""
     zoomed_in: Tuple = [
         item for item in lst
         for i in range(factor)

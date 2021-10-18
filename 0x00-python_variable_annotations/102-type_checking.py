@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
-"""
-fixing code bellow
-"""
-
-
-from typing import List, Tuple
+"""iterable object zoomed in"""
+from typing import Tuple, List
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
-    """Returns a list"""
-    zoomed_in: Tuple = [
+    """returns a list zoomed in"""
+
+    zoomed_in: List = [
         item for item in lst
         for i in range(factor)
     ]

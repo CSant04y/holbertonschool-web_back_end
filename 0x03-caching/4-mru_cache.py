@@ -28,7 +28,7 @@ class MRUCache(BaseCaching):
             key ([str]): [key]
             item ([str]): [Value]
         """
-        if not key and not item:
+        if not key or not item:
             return
 
         self.mru_dict[key] = item

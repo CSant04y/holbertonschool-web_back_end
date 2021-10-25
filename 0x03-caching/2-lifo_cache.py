@@ -44,8 +44,7 @@ class LIFOCache(BaseCaching):
         Args:
             key ([string]): [Key value for dictonary]
         """
-        if key:
+        if key in self.cache_data:
             return self.cache_data[key]
 
-        else:
-            return None
+        return None

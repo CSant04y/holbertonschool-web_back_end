@@ -51,4 +51,4 @@ class FIFOCache(BaseCaching):
             return None
 
         else:
-            return self.cache[key]
+            return self.cache_data[key]

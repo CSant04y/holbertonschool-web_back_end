@@ -38,8 +38,6 @@ class MRUCache(BaseCaching):
             discarded = next(iter(self.mru_dict))
             del self.cache_data[discarded]
             print("DISCARD: {}".format(discarded))
-        if len(self.mru_dict) > BaseCaching.MAX_ITEMS:
-            self.mru_order.popitem(last=False)
 
         self.mru_dict.move_to_end(key, last=False)
 

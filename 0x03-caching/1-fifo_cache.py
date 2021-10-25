@@ -47,8 +47,7 @@ class FIFOCache(BaseCaching):
         Args:
             key ([string]): [Key value for dictonary]
         """
-        if key is None or not key:
-            return None
-
-        else:
+        if key in self.cache_data:
             return self.cache_data[key]
+
+        return None

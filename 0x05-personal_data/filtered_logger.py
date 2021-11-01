@@ -7,6 +7,8 @@ This function returns a long message Obfiscated
 from typing import List
 import re
 import logging
+from mysql.connector import connection 
+from os import environ
 
 
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
@@ -39,6 +41,21 @@ def filter_datum(fields: List[str], redaction: str, message: str,
         message = re.sub(f'{field}=(.*?){separator}',
                          f'{field}={redaction}{separator}', message)
     return message
+
+
+def get_db() -> connection.MySQLConnection:
+    """[Connects to Db]
+
+    Returns:
+        connection.MySQLConnection: [connector to db]
+    """
+    username = environ.get('PERSONAL_DATA_DB_USERNAME', "root")
+    password = environ.get('PERSONAL_DATA_DB_PASSWORD', "")
+    db_host = environ.get('PERSONAL_DATA_DB_HOST', "localhost")
+    db_name = environ.get('PERSONAL_DATA_DB_NAME')
+
+    connector = connection.MySQLConnection(host=db_host, database=db_name, user=username, password=password)
+    return connector
 
 
 def get_logger() -> logging.Logger:

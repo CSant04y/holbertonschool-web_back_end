@@ -7,7 +7,7 @@ This function returns a long message Obfiscated
 from typing import List
 import re
 import logging
-from mysql.connector import connection 
+from mysql.connector import connection
 from os import environ
 
 
@@ -54,7 +54,8 @@ def get_db() -> connection.MySQLConnection:
     db_host = environ.get('PERSONAL_DATA_DB_HOST', "localhost")
     db_name = environ.get('PERSONAL_DATA_DB_NAME')
 
-    connector = connection.MySQLConnection(host=db_host, database=db_name, user=username, password=password)
+    connector = connection.MySQLConnection(host=db_host, database=db_name,
+                                           user=username, password=password)
     return connector
 
 

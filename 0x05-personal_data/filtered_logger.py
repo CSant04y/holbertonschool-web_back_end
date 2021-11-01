@@ -76,3 +76,14 @@ def get_logger() -> logging.Logger:
 
     logger.addHandler(streamhandler)
     return logger
+
+def main() -> None:
+    """[The main function that runs db]
+    """
+
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM users')
+    
+    for row in cursor:
+        print(row)

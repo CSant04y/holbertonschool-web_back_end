@@ -48,7 +48,7 @@ def get_logger() -> logging.Logger:
         logging.Logger: [description]
     """
     '''Create Object first'''
-    logger = logging.Logger('user_data')
+    logger = logging.getLogger('user_data')
     '''Set the level of the object to logging.INFO'''
     logger.setLevel(logging.INFO)
     logger.propagate = False

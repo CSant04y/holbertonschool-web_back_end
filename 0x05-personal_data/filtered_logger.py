@@ -77,6 +77,7 @@ def get_logger() -> logging.Logger:
     logger.addHandler(streamhandler)
     return logger
 
+
 def main() -> None:
     """[The main function that runs db]
     """
@@ -84,7 +85,7 @@ def main() -> None:
     db = get_db()
     cursor = db.cursor()
     cursor.execute('SELECT * FROM users')
-    
+
     headers = [field[0] for field in cursor.description]
     logger = get_logger()
 
@@ -98,5 +99,5 @@ def main() -> None:
     db.close()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

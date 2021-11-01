@@ -85,5 +85,5 @@ def main() -> None:
     cursor = db.cursor()
     cursor.execute('SELECT * FROM users')
     
-    for row in cursor:
-        print(row)
+    headers = [field[0] for field in cursor.description]
+    print(f'This is headers: {headers}')

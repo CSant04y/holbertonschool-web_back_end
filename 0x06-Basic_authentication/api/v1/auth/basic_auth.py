@@ -26,3 +26,24 @@ class BasicAuth(Auth):
         if authorization_header.startswith("Basic "):
             return authorization_header[6:]
         # base64.b64encode(authorization_header[6:].encode("ascii"))
+
+    def decode_base64_authorization_header(
+            self, base64_authorization_header: str) -> str:
+        """[Decodes base64 str]
+
+        Args:
+            base64_authorization_header (str): [API request header]
+
+        Returns:
+            str: [decoded str]
+        """
+        if not base64_authorization_header or not isinstance(
+                base64_authorization_header, str):
+            return None
+
+        try:
+            encoded = base64_authorization_header.encode('utf-8')
+            base = base64.b64decode(encoded)
+            return base.decode('utf-8')
+        except BaseException:
+            return None

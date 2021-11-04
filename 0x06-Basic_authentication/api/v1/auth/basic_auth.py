@@ -3,6 +3,9 @@
 """
 
 from api.v1.auth.auth import Auth
+from models.user import User
+from models.base import Base
+from typing import TypeVar
 import base64
 
 
@@ -66,3 +69,28 @@ class BasicAuth(Auth):
         base = decoded_base64_authorization_header.split(':')
 
         return base[0], base[1]
+
+    def user_object_from_credentials(
+            self, user_email: str, user_pwd: str) -> TypeVar('User'):
+        """[returns User Instance based of username and password]
+
+        Args:
+            self ([type]): [description]
+        """
+
+        if not user_email or not isinstance(user_email, str):
+            return None
+
+        elif not user_pwd or not isinstance(user_pwd, str):
+            return None
+
+        try:
+            users = User.search({'email': user_email})
+
+        except BaseException:
+            return None
+
+        for user in users:
+            if user.is_valid_password(user_pwd):
+                return user
+        return None

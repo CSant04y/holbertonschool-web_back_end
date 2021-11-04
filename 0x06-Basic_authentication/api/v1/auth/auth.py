@@ -17,14 +17,20 @@ class Auth():
 
         if path[-1] != "/":
             path += '/'
+        '''Checks to see if any of excluded path end in *'''
+        wildcard = any(rex.endswith("*") for rex in excluded_paths)
 
-        if path not in excluded_paths:
-            return True
+        if not wildcard:
+            if path in excluded_paths:
+                return False
 
-        if path in excluded_paths:
-            return False
-
-        return False
+        for rex in excluded_paths:
+            if rex[-1] == '*':
+                if path.startswith(rex[:-1]):
+                    return False
+            if rex == path:
+                return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """This is Authorization header

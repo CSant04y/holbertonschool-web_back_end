@@ -6,7 +6,6 @@ from os import getenv
 from typing import List, TypeVar
 
 
-
 class Auth():
     """Class Auth
     """
@@ -55,8 +54,7 @@ class Auth():
         """
         if not request:
             return None
-        
-        '''Must return the value of the co"okie named _my_session_id from request'''
+
         cookie_name = getenv("SESSION_NAME")
-        
+
         return request.cookies.get(cookie_name)

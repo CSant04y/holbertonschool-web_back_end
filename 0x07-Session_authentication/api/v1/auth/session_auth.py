@@ -5,6 +5,8 @@
 
 from api.v1.auth.auth import Auth
 from uuid import uuid4
+from os import getenv
+from models.user import User
 
 
 class SessionAuth(Auth):
@@ -46,3 +48,13 @@ class SessionAuth(Auth):
             return None
 
         return self.user_id_by_session_id.get(session_id)
+
+    def current_user(self, request=None):
+        """[summary]
+
+        Args:
+            request ([type], optional): [description]. Defaults to None.
+        """
+        session_cookie = self.session_cookie(request)
+        session_id = self.user_id_for_session_id(session_cookie)
+        return User.get(session_id)

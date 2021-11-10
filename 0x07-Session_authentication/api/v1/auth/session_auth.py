@@ -13,7 +13,7 @@ class SessionAuth(Auth):
     Args:
         Auth ([Class]): [Class that is being inhertited]
     """
-    user_id_by_session_id = dict()
+    user_id_by_session_id = {}
 
     def create_session(self, user_id: str = None) -> str:
         """[This method creates a session for authentication]

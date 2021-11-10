@@ -2,7 +2,9 @@
 """Class that manages API Authentication
 """
 from flask import request
+from os import getenv
 from typing import List, TypeVar
+
 
 
 class Auth():
@@ -44,3 +46,17 @@ class Auth():
         """Returns flask Request object
         """
         return None
+
+    def session_cookie(self, request=None):
+        """[This returns a cookie value on request]
+
+        Args:
+            request ([type], optional): [description]. Defaults to None.
+        """
+        if not request:
+            return None
+        
+        '''Must return the value of the co"okie named _my_session_id from request'''
+        cookie_name = getenv("SESSION_NAME")
+        
+        return request.cookies.get(cookie_name)

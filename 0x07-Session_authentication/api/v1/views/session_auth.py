@@ -34,3 +34,13 @@ def login():
             user_dict = jsonify(user.to_json())
             user_dict.set_cookie(sesion_name, session_id)
             return user_dict
+
+@app_views.route("/auth_session/logout", methods=['DELETE'], strict_slashes=False)
+def logout():
+    """logout"""
+    from api.v1.app import auth
+    destroy_session = auth.destroy_session(request)
+
+    if destroy_session:
+        return jsonify({}), 200
+    abort(404)

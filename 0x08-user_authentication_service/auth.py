@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Returns bytes from password fed in
 """
+from sqlalchemy.orm import session
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
 from db import DB
@@ -35,6 +36,17 @@ class Auth:
         except NoResultFound:
             return False
         return bcrypt.checkpw(password.encode(), user.hashed_password)
+
+    def create_session(self, email: str) -> str:
+        """This creates a session"""
+        try:
+            user = self._db.find_user_by(email=email)
+        except NoResultFound:
+            return None
+
+        session_id = _generate_uuid()
+        self._db.update_user(user.id, session_id=session_id)
+        return session_id
 
 
 def _hash_password(password: str) -> bytes:

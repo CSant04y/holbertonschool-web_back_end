@@ -1,4 +1,4 @@
-#!/usr/bin/env pyhton3
+#!/usr/bin/env python3
 """This is another basic Flask Application
 """
 from flask import Flask, jsonify

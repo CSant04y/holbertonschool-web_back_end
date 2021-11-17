@@ -71,7 +71,7 @@ def user_profile():
     logged_user = AUTH.get_user_from_session_id(session_id)
 
     if logged_user:
-        jsonify({"email": "<user email>"}), 200
+        jsonify({"email": user.email}), 200
     else:
         abort(403)
 

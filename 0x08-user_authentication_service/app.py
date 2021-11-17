@@ -2,6 +2,7 @@
 """This is another basic Flask Application
 """
 from flask import Flask, jsonify, request, abort
+from sqlalchemy.sql.functions import user
 from auth import Auth
 
 
@@ -47,6 +48,23 @@ def login() -> str:
         return response
     else:
         abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """This logs out the user"""
+    session_id = request.cookies.get('session_id')
+
+    if not session_id:
+        abort(403)
+
+    logged_user = AUTH.get_user_from_session_id(session_id)
+
+    if not logged_user:
+        abort(403)
+
+    AUTH.destroy_session(user.id)
+    return redirect('/')
 
 
 if __name__ == '__main__':

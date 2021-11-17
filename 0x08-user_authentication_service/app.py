@@ -34,7 +34,7 @@ def login() -> str:
     This is a login function
     """
     email = request.form.get('email')
-    password = request.form.get('pasword')
+    password = request.form.get('password')
 
     valid_login = AUTH.valid_login(email, password)
 

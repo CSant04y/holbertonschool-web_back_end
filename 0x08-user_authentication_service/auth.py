@@ -63,7 +63,7 @@ class Auth:
             return self._db.find_user_by(session_id=session_id)
         except NoResultFound:
             return None
-        
+
 
 def _hash_password(password: str) -> bytes:
     """Returns a Hashed password

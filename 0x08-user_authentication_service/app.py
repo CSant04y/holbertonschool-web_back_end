@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """This is another basic Flask Application
 """
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, redirect
 from sqlalchemy.sql.functions import user
 from auth import Auth
 

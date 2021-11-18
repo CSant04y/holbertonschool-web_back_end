@@ -84,7 +84,7 @@ class Auth:
             raise ValueError
 
     def update_password(self, reset_token: str, password: str) -> None:
-        """This updates the password"""
+        """This updates the password for the user"""
         if not reset_token:
             return None
 

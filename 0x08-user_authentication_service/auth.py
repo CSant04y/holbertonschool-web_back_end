@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Returns bytes from password fed in
 """
+from flask.globals import request
 from sqlalchemy.orm import session
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.sql.functions import user
+from werkzeug.exceptions import abort
 import bcrypt
 from db import DB
 from user import User
@@ -71,17 +73,14 @@ class Auth:
 
         return None
 
-    def get_reset_password_token(self, email: str) -> str:
+    def get_reset_password_token(self) -> str:
         """[This takes in email argument and returns a token]
         """
         try:
             user = self._db.find_user_by(email=email)
-            reset_token = uuid.uuid4()
-
-            self._db.update_user(user.id, reset_token=reset_token)
-            return reset_token
-
-        except ValueError:
+            self._db.update_user(user.id, reset_token=_generate_uuid())
+            return user.reset_token
+        except NoResultFound:
             raise ValueError
 
 

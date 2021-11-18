@@ -11,7 +11,7 @@ AUTH = Auth()
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
-def welcome():
+def welcome() -> str:
     '''Returns Json Payload'''
     return jsonify({"message": "Bienvenue"}), 200
 
@@ -64,7 +64,7 @@ def logout():
 
 
 @app.route('/profile', methods=['GET'], strict_slashes=False)
-def user_profile():
+def user_profile() -> str:
     """[This method gets the user using a session cookie]
     """
     session_id = request.cookies.get('session_id')
@@ -77,7 +77,7 @@ def user_profile():
 
 
 @app.route('/reset_password', methods=['POST'], strict_slashes=False)
-def get_reset_password_token():
+def get_reset_password_token() -> str:
     '''This resets the password. '''
 
     email = request.form.get('email')
@@ -93,7 +93,7 @@ def get_reset_password_token():
 
 
 @app.route('/reset_password', methods=['PUT'], strict_slashes=False)
-def update_password():
+def update_password() -> str:
     """updates password"""
     email = request.form.get('email')
     reset_token = request.form.get('reset_token')
@@ -107,4 +107,4 @@ def update_password():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port="5000")

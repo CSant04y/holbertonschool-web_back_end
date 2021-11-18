@@ -12,6 +12,18 @@ from user import User
 import uuid
 
 
+def _hash_password(password: str) -> bytes:
+    """Returns a Hashed password
+    """
+
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+
+
+def _generate_uuid() -> str:
+    """This generates a uuid and is returned as a str"""
+    return str(uuid.uuid4())
+
+
 class Auth:
     """Auth class to interact with the authentication database.
     """
@@ -95,15 +107,3 @@ class Auth:
                                  reset_token=None)
         except NoResultFound:
             raise ValueError
-
-
-def _hash_password(password: str) -> bytes:
-    """Returns a Hashed password
-    """
-
-    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-
-
-def _generate_uuid() -> str:
-    """This generates a uuid and is returned as a str"""
-    return str(uuid.uuid4())

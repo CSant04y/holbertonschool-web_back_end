@@ -53,7 +53,7 @@ class Auth:
         return bcrypt.checkpw(password.encode(), user.hashed_password)
 
     def create_session(self, email: str) -> str:
-        """This creates a session"""
+        """This creates a session for function """
         try:
             user = self._db.find_user_by(email=email)
         except NoResultFound:
@@ -65,12 +65,6 @@ class Auth:
 
     def get_user_from_session_id(self, session_id: str) -> user:
         """[This gets user form session_id]
-
-        Args:
-            session_id (str): [This is the id of the session]
-
-        Returns:
-            user: [if found]
         """
 
         try:

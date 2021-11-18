@@ -85,12 +85,6 @@ class Auth:
 
     def update_password(self, reset_token: str, password: str) -> None:
         """This updates the password"""
-        # email = request.form.get('email')
-        # reset_token = request.form.get('reset_token')
-        # new_password = request.form.get('new_password')
-
-        # try:
-        #     AUTH.
         if not reset_token:
             return None
 

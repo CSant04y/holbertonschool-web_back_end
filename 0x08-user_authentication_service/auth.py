@@ -83,6 +83,25 @@ class Auth:
         except NoResultFound:
             raise ValueError
 
+    def update_password(self, reset_token: str, password: str) -> None:
+        """This updates the password"""
+        # email = request.form.get('email')
+        # reset_token = request.form.get('reset_token')
+        # new_password = request.form.get('new_password')
+
+        # try:
+        #     AUTH.
+        if not reset_token:
+            return None
+
+        try:
+            user = self._db.find_user_by(reset_token=reset_token)
+            pwd = _hash_password(password)
+            self._db.update_user(user.id, hashed_password=pwd,
+                                 reset_token=None)
+        except NoResultFound:
+            raise ValueError
+
 
 def _hash_password(password: str) -> bytes:
     """Returns a Hashed password

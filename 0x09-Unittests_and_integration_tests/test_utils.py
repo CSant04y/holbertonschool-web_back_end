@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 '''Thic has the test class to test NestedMap'''
 import unittest
+from unittest.mock import patch, Mock
 from parameterized import parameterized
 from typing import Mapping, Sequence, Any
-from utils import access_nested_map
+from utils import access_nested_map, get_json
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -26,3 +27,23 @@ class TestAccessNestedMap(unittest.TestCase):
         """This tests the keyError raise in uitils.py"""
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
+
+
+class TestGetJson(unittest.TestCase):
+    '''This class tests the method GetJson in the util.py module'''
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
+    ])
+    def test_get_json(self, test_url, test_payload):
+        '''This tests GetJson Mwthod in untils.py module'''
+        class Mocked(Mock):
+            '''mock class in '''
+
+            def json(self):
+                '''mocks json method'''
+                return test_payload
+        
+        with patch("requests.get") as MockedClass:
+            MockedClass.return_value = Mocked()
+            self.assertAlmostEqual(get_json(test_url), test_payload)

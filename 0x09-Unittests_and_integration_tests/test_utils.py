@@ -6,7 +6,6 @@ from typing import Mapping, Sequence, Any
 from utils import access_nested_map
 
 
-
 class TestAccessNestedMap(unittest.TestCase):
     """This tests the NestedMap method"""
     @parameterized.expand([
@@ -17,3 +16,13 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map(self, nested_map, path, expected):
         """test nested map"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
+
+    @parameterized.expand([
+        ({}, ("a",)),
+        ({"a": 1}, ("a", "b")),
+
+    ])
+    def test_access_nested_map_exception(self, nested_map, path):
+        """This tests the keyError raise in uitils.py"""
+        with self.assertRaises(KeyError):
+            access_nested_map(nested_map, path)

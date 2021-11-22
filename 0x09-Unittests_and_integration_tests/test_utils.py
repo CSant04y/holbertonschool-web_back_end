@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 '''Thic has the test class to test NestedMap'''
 import unittest
 from nose.tools import assert_equal

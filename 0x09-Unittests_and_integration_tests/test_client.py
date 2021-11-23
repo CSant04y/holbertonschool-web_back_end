@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''Ths module contians classes to test client.py methods'''
-import client
+from client import GithubOrgClient
 from parameterized import parameterized
 import unittest
 from unittest import mock
@@ -8,18 +8,15 @@ from unittest.mock import patch, Mock
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    '''This class tests GithubOrgClient method'''
-
+    """tests GithubOrgClient functionality"""
     @parameterized.expand([
-        ("google"),
-        ("abc")
+        ('google'),
+        ('abc'),
     ])
-    @patch('client.get_json', return_value={'k': 'y'})
-    def test_org(self, url_passed, my_mock):
-        """
-        Test GithubOrgClient.org
-        """
-        g = client.GithubOrgClient(url_passed)
-        self.assertEqual(g.org, {'k': 'y'})
-        url = 'https://api.github.com/orgs/{}'.format(url_passed)
-        my_mock.assert_called_once_with(url)
+    @patch('client.get_json', return_value={'k': 'v'})
+    def test_org(self, org_name, mock_gj):
+        """tests that GithubOrgClient.org returns correct value"""
+        test = GithubOrgClient(org_name)
+        self.assertEqual(test.org, {'k': 'v'})
+        url = 'https://api.github.com/orgs/{}'.format(org_name)
+        mock_gj.assert_called_once_with(url)

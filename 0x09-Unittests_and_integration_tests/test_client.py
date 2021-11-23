@@ -11,14 +11,15 @@ class TestGithubOrgClient(unittest.TestCase):
     '''This class tests GithubOrgClient method'''
 
     @parameterized.expand([
-        ('google'),
-        ('abc')
+        ("google"),
+        ("abc")
     ])
     @patch('client.get_json')
-    def test_org(self, data, mock):
-        ''' self descriptive '''
-        mock.return_value = True
-        endpoint = 'https://api.github.com/orgs/{}'.format(data)
-        spec = GithubOrgClient(data)
-        self.assertEqual(spec.org, True)
-        mock.assert_called_once_with(endpoint)
+    def test_org(self, url, my_mock):
+        """
+        Test GithubOrgClient.org
+        """
+        my_mock.return_value = True
+        g = GithubOrgClient(url)
+        self.assertEqual(g.org, True)
+        my_mock.assert_called_once()

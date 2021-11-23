@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-'''Ths module contians classes to test client.py methods'''
-from client import GithubOrgClient
-from parameterized import parameterized
+"""module for testing client.py"""
 import unittest
-from unittest import mock
-from unittest.mock import patch, Mock
+from unittest.mock import patch, PropertyMock, Mock
+from parameterized import parameterized, parameterized_class
+from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
+from requests import Response
 
 
 class TestGithubOrgClient(unittest.TestCase):

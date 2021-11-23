@@ -44,7 +44,7 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch('client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock) as mockedProperty:
             mockedProperty.return_value = 'hello'
-            response = client.GithubOrgClient('test').public_repos()
+            response = GithubOrgClient('test').public_repos()
 
             self.assertEqual(response, ['Google', 'TT'])
 

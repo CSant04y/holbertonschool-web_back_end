@@ -14,12 +14,12 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google"),
         ("abc")
     ])
-    @patch('client.get_json')
-    def test_org(self, url, my_mock):
+    @patch('client.get_json', return_value={'k': 'y'})
+    def test_org(self, url_passed, my_mock):
         """
         Test GithubOrgClient.org
         """
-        my_mock.return_value = True
-        g = client.GithubOrgClient(url)
-        self.assertEqual(g.org, True)
-        my_mock.assert_called_once()
+        g = client.GithubOrgClient(url_passed)
+        self.assertEqual(g.org, {'k': 'y'})
+        url = 'https://api.github.com/orgs/{}'.format(url_passed)
+        my_mock.assert_called_once_with(url)

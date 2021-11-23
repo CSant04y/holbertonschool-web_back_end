@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 '''Ths module contians classes to test client.py methods'''
-from client import GithubOrgClient
 import client
 from parameterized import parameterized
 import unittest
@@ -21,6 +20,6 @@ class TestGithubOrgClient(unittest.TestCase):
         Test GithubOrgClient.org
         """
         my_mock.return_value = True
-        g = GithubOrgClient(url)
+        g = client.GithubOrgClient(url)
         self.assertEqual(g.org, True)
         my_mock.assert_called_once()

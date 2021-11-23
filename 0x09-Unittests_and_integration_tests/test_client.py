@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''Ths module contians classes to test client.py methods'''
 from client import GithubOrgClient
+import client
 from parameterized import parameterized
 import unittest
 from unittest import mock

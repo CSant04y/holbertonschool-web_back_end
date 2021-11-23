@@ -16,8 +16,8 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     @patch('client.get_json')
     def test_org(self, data, mock):
-        """This method makes sure that GithubOrgClient returns right value"""
-        url = "https://api.github.com/orgs/{}".format(data)
-        obj = GithubOrgClient(data)
-        obj.org()
-        mock.assert_called_once_with(url)
+        ''' self descriptive '''
+        endpoint = 'https://api.github.com/orgs/{}'.format(data)
+        spec = GithubOrgClient(data)
+        spec.org()
+        mock.assert_called_once_with(endpoint)

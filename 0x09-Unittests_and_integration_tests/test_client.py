@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 '''Ths module contians classes to test client.py methods'''
-import client
-from client import GithubOrgClient
-from parameterized import parameterized
 import unittest
-from unittest import mock
-from unittest.mock import PropertyMock, patch, Mock
+from unittest.mock import patch, PropertyMock, Mock
+from parameterized import parameterized, parameterized_class
+from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
+from requests import Response
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @parameterized.expand([
         ('random-url', {'repos_url': 'http://some_url.com'})
-        ])
+    ])
     def test_public_repos_url(self, name, result):
         '''This tests _puclic_repo'''
         with patch('client.GithubOrgClient.org',

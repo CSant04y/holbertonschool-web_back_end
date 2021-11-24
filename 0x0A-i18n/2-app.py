@@ -25,7 +25,7 @@ def get_local():
 @app.route('/', methods=['GET'])
 def index():
     '''This renders the index.html template'''
-    return render_template('0-index.html')
+    return render_template('2-index.html')
 
 
 if __name__ == "__main__":

@@ -7,14 +7,14 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config(object):
+class Config:
     '''langauge configuration class'''
     LANGUAGES = ["en", "fr"]
 
 
 app.config.from_object(Config)
-babel.default_local = 'en'
-babel.default_timeszone = 'UTC'
+Babel.default_local = 'en'
+Babel.default_timeszone = 'UTC'
 
 
 @app.route('/', methods=['GET'])

@@ -12,7 +12,7 @@ class Config:
     LANGUAGES = ["en", "fr"]
 
 
-app.config.from_object('Config')
+app.config.from_object(Config)
 babel.default_local = 'en'
 babel.default_timeszone = 'UTC'
 

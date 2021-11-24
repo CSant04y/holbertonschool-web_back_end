@@ -7,7 +7,8 @@ babel = Babel(app)
 
 
 class Config(object):
-    '''langauge configuration class'''
+    """[This class sets the config for babel]s
+    """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
@@ -18,13 +19,21 @@ app.config.from_object(Config)
 
 @babel.localselector
 def get_local():
-    '''This determins the best match'''
+    """[This determinds the best match in language]
+
+    Returns:
+        [Str]: [Lanaguage choosen]
+    """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', methods=['GET'])
 def index():
-    '''This renders the index.html template'''
+    """[This renders the template for website]
+
+    Returns:
+        [template]: rendered template
+    """
     return render_template('2-index.html')
 
 

@@ -2,7 +2,7 @@
 '''Ths module contians classes to test client.py methods'''
 import client
 from client import GithubOrgClient
-from parameterized import parameterized, parameterized_class
+from parameterized import parameterized
 import unittest
 from unittest import mock
 from unittest.mock import PropertyMock, patch, Mock
@@ -50,3 +50,12 @@ class TestGithubOrgClient(unittest.TestCase):
 
             mockedProperty.assert_called_once()
             mocked_method.assert_called_once()
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False)
+    ])
+    def test_has_license(self, repo, key, expectation):
+        '''self descriptive'''
+        result = GithubOrgClient.has_license(repo, key)
+        self.assertEqual(result, expectation)

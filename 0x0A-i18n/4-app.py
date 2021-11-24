@@ -29,7 +29,7 @@ def get_locale():
     if locale:
         return locale
 
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route('/', methods=['GET'])

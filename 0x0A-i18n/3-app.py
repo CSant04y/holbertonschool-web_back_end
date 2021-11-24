@@ -24,6 +24,7 @@ def get_locale():
     Returns:
         [Str]: [Lanaguage choosen]
     """
+
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 

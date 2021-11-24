@@ -33,11 +33,13 @@ def get_user():
             return user
     return None
 
+
 @app.before_request
 def before_request():
     '''This is before request'''
     user = get_user()
     g.user = user
+
 
 @babel.localeselector
 def get_locale():

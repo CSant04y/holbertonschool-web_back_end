@@ -17,7 +17,7 @@ class Config(object):
 app.config.from_object(Config)
 
 
-@babel.localselector
+@babel.localeselector
 def get_local():
     """[This determinds the best match in language]
 

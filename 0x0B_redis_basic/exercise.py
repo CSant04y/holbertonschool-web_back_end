@@ -41,8 +41,8 @@ def replay(method: Callable):
     stored_key = self_.get(stored_name)
     if stored_key:
         times = self_.get_str(stored_key)
-        inputs = self_.redis.lrange(stored_name + ":inputs", 0, -1)
-        outputs = self_.redis.lrange(stored_name + ":outputs", 0, -1)
+        inputs = self_._redis.lrange(stored_name + ":inputs", 0, -1)
+        outputs = self_._redis.lrange(stored_name + ":outputs", 0, -1)
 
         print(f"{stored_name} was called {times} times:")
         zipvalues = zip(inputs, outputs)

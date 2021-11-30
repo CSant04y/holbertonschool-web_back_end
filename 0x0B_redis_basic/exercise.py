@@ -20,6 +20,20 @@ def count_calls(method: Callable) -> Callable:
     return wrapper
 
 
+def call_history(method: Callable) -> Callable:
+    """This gets the call history"""
+    inputs = method.__qualname__ + ":inputs"
+    outputs = method.__qualname__ + ":outputs"
+
+    @wraps(method)
+    def wrapper(self, *args, **kwrgs):
+        self._redis.rpush(inputs, str(args))
+        returned_method = method(self, *args, **kwrgs)
+        self._redis.rpush(outputs, str(returned_method))
+        return returned_method
+    return wrapper
+
+
 class Cache:
     """[This is the Cahcing class with methods for caching]
     """
@@ -30,6 +44,7 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls
+    @call_history
     def store(self, data: UnionTypes) -> str:
         """This method stores data passed to it"""
         random_key = str(uuid.uuid4())

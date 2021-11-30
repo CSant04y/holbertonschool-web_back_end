@@ -5,8 +5,19 @@ This writes strings to redis
 import redis
 import uuid
 from typing import Callable, Union, Optional
+from functools import wraps
 
 UnionTypes = Union[str, bytes, int, float]
+
+
+def count_calls(method: Callable) -> Callable:
+    """counts the number of times a method is called"""
+    @wraps(method)
+    def wrapper(self, *args) -> bytes:
+        """Wraper func for count_calls"""
+        self._redis.incr(method.__qualname__)
+        return method(self, *args)
+    return wrapper
 
 
 class Cache:
@@ -18,6 +29,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: UnionTypes) -> str:
         """This method stores data passed to it"""
         random_key = str(uuid.uuid4())

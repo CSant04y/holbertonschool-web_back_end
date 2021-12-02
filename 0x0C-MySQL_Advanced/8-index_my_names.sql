@@ -2,4 +2,4 @@
 -- on the tables names
 
 CREATE INDEX idx_name_first_score
-ON names (name(1));
+ON names(name(1));

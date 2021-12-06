@@ -1,0 +1,7 @@
+// This script adds a new document to collection school
+use school
+db.school.update(
+    {name: "Holberton school"},
+    {$set: {address: "972 Mission street"}},
+    {multi:true}
+)

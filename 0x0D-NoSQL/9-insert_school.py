@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 This inserts a new doumnet into collection based of kwargs
 """

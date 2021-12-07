@@ -1,5 +1,4 @@
 // This delets documents with given value in school collection
-use school
 db.school.deleteMany(
     {"name": "Holberton school"}
 )

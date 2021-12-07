@@ -1,3 +1,2 @@
 // This counts the ammount of document in school
-use school
 db.school.find().count()

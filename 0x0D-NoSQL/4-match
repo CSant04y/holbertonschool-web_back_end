@@ -1,3 +1,2 @@
 // Lists all documents witin the collection school that contain 
-use school
 db.school.find({"name": "Holberton school"})

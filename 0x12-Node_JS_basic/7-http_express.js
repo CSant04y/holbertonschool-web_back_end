@@ -9,12 +9,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
-  res.write('Hello Holberton School!\n');
   res.write('This is the list of our students\n');
   countStudents(process.argv[2]).then((dataView) => {
     console.log(dataView);
     res.write([`${dataView.numberOfStudents}`].concat(dataView.studentFields).join('\n'));
-    res.end('\n');
+    res.end();
   }).catch((error) => {
     res.end(error.message);
   });

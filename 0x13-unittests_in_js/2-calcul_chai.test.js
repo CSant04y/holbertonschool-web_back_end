@@ -1,17 +1,16 @@
 const { expect } = require("chai");
-const { type } = require("chai/lib/chai/utils");
-const calculateNumber = require("./1-calcul.js");
+const calculateNumber = require("./2-calcul_chai.js");
 
-describe("calculateNumber type=SUM", function () {
+describe("calculateNumber type == SUM", function () {
 
-  it("Calculates SUM", function () {
+  it("Calculates SUM", () => {
     expect(calculateNumber("SUM", 5.2, 1.8)).to.equal(7);
     expect(calculateNumber("SUM", 5.21, 2.89)).to.equal(8);
     expect(calculateNumber("SUM", 7.1, 2.5)).to.equal(10);
   });
 });
 
-describe("calculateNumber", () => {
+describe("calculateNumber type == SUBTRACT", () => {
   it("Calculates SUBTRACT", function () {
     expect(calculateNumber("SUBTRACT", -2.5, -6.2)).to.equal(4);
     expect(calculateNumber("SUBTRACT", -50.1, -10.8)).to.equal(-39);
@@ -20,16 +19,7 @@ describe("calculateNumber", () => {
   });
 });
 
-describe("calculateNumber", () => {
-  it("Calculates SUBTRACT", function () {
-    expect(calculateNumber("SUBTRACT", -2.5, -6.2)).to.equal(4);
-    expect(calculateNumber("SUBTRACT", -50.1, -10.8)).to.equal(-39);
-    expect(calculateNumber("SUBTRACT", 3.85, -10.2)).to.equal(14);
-    expect(calculateNumber("SUBTRACT", -10, 10)).to.equal(-20);
-  });
-});
-
-describe("calculateNumber", () => {
+describe("calculateNumber type == DIVIDE", () => {
   it("Calculates DIVIDE", function() {
     expect(calculateNumber("DIVIDE", 0, 0)).to.equal("Error");
     expect(calculateNumber("DIVIDE", 100.6736, 0)).to.equal("Error");

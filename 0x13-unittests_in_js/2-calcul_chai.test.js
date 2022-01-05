@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { type } = require("chai/lib/chai/utils");
 const calculateNumber = require("./1-calcul.js");
 
-describe("calculateNumber SUM", function () {
+describe("calculateNumber type=SUM", function () {
 
   it("Calculates SUM", function () {
     expect(calculateNumber("SUM", 5.2, 1.8)).to.equal(7);

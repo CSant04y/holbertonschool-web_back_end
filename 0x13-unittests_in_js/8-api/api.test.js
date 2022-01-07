@@ -25,7 +25,7 @@ describe ("index page", function() {
         });
     });
 
-    it('get', () => {
+    it('GET', () => {
         request('http://localhost:7865', (err, response, body) => {
             console.log(response.request.method);
             expect(console.log.calledWith('GET')).to.be.true;

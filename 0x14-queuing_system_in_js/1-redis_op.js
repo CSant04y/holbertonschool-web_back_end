@@ -18,7 +18,7 @@ function setNewSchool(schoolName, value) {
   });
 }
 
-async function displaySchoolValue(schoolName) {
+function displaySchoolValue(schoolName) {
   const value = client.get(schoolName, (reply) => reply);
   value.then((res) => console.log(res));
 }
